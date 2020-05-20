@@ -19,6 +19,12 @@ EOS
       desc:    'Whether this resource should be present or absent on the target system.',
       default: 'present',
     },
+    replace: {
+      type:    'Enum[yes, no]',
+      desc:    'Whether this resource should be replaces if it exists and differs from catalog.',
+      behaviour: :parameter,
+      default: 'yes',
+    },
     members: {
       type:         'Optional[Array[String]]',
       desc:         'One or more `panos_application` or `panos_application_group` or `panos_application_filter` that form this group.',

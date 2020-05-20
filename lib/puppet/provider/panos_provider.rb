@@ -27,6 +27,10 @@ class Puppet::Provider::PanosProvider < Puppet::ResourceApi::SimpleProvider
 
   def update(context, name, should)
     validate_should(should) if defined? validate_should
+    if should[:replace] && should[:replace] == 'no'
+      Puppet.notice('Not uptading object with replace attribute set to `no`')
+      return
+    end
     context.transport.edit_config(context.type.definition[:base_xpath] + "/entry[@name='#{name}']", xml_from_should(name, should))
     context.transport.move(context.type.definition[:base_xpath], name, should[:insert_after]) unless should[:insert_after].nil?
   end
@@ -37,6 +41,7 @@ class Puppet::Provider::PanosProvider < Puppet::ResourceApi::SimpleProvider
 
   def match(entry, attr, attr_name)
     return 'present' if attr_name == :ensure
+    return 'yes' if attr_name == :replace
     if attr.key? :xpath
       text_match(entry, attr)
     elsif attr.key? :xpath_array

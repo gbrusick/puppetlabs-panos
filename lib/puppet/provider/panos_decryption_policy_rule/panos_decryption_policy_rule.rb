@@ -71,6 +71,8 @@ class Puppet::Provider::PanosDecryptionPolicyRule::PanosDecryptionPolicyRule < P
         builder.tag! should[:type], nil
       end
 
+      builder.profile(should[:profile]) if should[:action] == 'decrypt'
+
       builder.description(should[:description]) if should[:description]
 
       build_tags(builder, should)
