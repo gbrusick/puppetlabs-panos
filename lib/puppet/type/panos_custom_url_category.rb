@@ -25,7 +25,7 @@ EOS
       xpath:     'description/text()',
     },
     category_type: {
-      type:         'Optional[String]',
+      type:         'Optional[Array[String]]',
       desc:         'Type should be `URL List` or `Category Match`. This parameter apeared in 9.0 and is mandatory for these versions',
       xpath_array:  'type/text()',
     },

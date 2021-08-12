@@ -5,9 +5,9 @@ class Puppet::Provider::PanosCustomUrlCategory::PanosCustomUrlCategory < Puppet:
   def validate_should(should)
     raise Puppet::ResourceError, 'URL Category should contain `list`' unless should[:list]
 
-    return unless should[:category_type]
+    #return unless should[:category_type]
 
-    raise Puppet::ResourceError, 'Type should be `URL List` or `Category Match`' unless should[:category_type] == 'URL List' || should[:category_type] == 'Category Match'
+    raise Puppet::ResourceError, 'Type should be `URL List` or `Category Match`' unless should[:category_type] == ['URL List'] || should[:category_type] == ['Category Match']
   end
 
   def xml_from_should(name, should)
@@ -15,7 +15,7 @@ class Puppet::Provider::PanosCustomUrlCategory::PanosCustomUrlCategory < Puppet:
     builder.entry('name' => name) do
       builder.description(should[:description]) if should[:description]
 
-      builder.type(should[:category_type]) if should[:category_type]
+      builder.type(should[:category_type][0]) if should[:category_type]
 
       builder.list do
         should[:list].each do |member|

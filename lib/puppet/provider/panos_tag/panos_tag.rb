@@ -75,5 +75,6 @@ class Puppet::Provider::PanosTag::PanosTag < Puppet::Provider::PanosProvider
       builder.color(@code_from_color[should[:color]]) if should.key? :color
       builder.comments(should[:comments]) if should.key? :comments
     end
+
   end
 end
