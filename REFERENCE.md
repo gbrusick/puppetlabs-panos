@@ -10,7 +10,7 @@
 * [`panos::install`](#panosinstall): This class installs dependencies of this module
 into the puppet agent, and/or the puppetserver service.
 * [`panos::install::agent`](#panosinstallagent): This class install dependencies of this module into puppet agent
-* [`panos::install::master`](#panosinstallmaster): This class installs dependencies of this module into puppetserver,
+* [`panos::install::server`](#panosinstallserver): This class installs dependencies of this module into puppetserver,
 and restarts the puppetserver service to activate.
 * [`panos::server`](#panosserver): This class installs dependencies of this module into puppetserver,
 and restarts the puppetserver service to activate.
@@ -98,7 +98,7 @@ This class install dependencies of this module into puppet agent
 include panos::install::agent
 ```
 
-### panos::install::master
+### panos::install::server
 
 This class installs dependencies of this module into puppetserver,
 and restarts the puppetserver service to activate.
@@ -108,7 +108,7 @@ and restarts the puppetserver service to activate.
 ##### Declaring the class
 
 ```puppet
-include panos::install::master
+include panos::install::server
 ```
 
 ### panos::server
@@ -116,7 +116,7 @@ include panos::install::master
 This class installs dependencies of this module into puppetserver,
 and restarts the puppetserver service to activate.
 
-* **Note** Deprecated, use panos::install::master
+* **Note** Deprecated, use panos::install::server
 
 #### Examples
 
